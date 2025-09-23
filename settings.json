@@ -1,0 +1,53 @@
+{
+  "latex-workshop.latex.outDir": "build",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.texmagic.enabled": true,
+
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-pdf",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=build",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "latexmk-lua",
+      "command": "latexmk",
+      "args": [
+        "-lualatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=build",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "latexmk-xe",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=build",
+        "%DOC%"
+      ]
+    },
+    { "name": "biber", "command": "biber", "args": ["%DOCFILE%"] }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    { "name": "latexmk (pdfLaTeX)", "tools": ["latexmk-pdf"] },
+    { "name": "latexmk (LuaLaTeX)", "tools": ["latexmk-lua"] },
+    { "name": "latexmk (pdfLaTeX) + biber", "tools": ["latexmk-pdf", "biber", "latexmk-pdf"] },
+    { "name": "latexmk (LuaLaTeX) + biber", "tools": ["latexmk-lua", "biber", "latexmk-lua"] }
+  ]
+}

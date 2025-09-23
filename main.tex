@@ -1,0 +1,141 @@
+\documentclass{book}
+\usepackage{stile}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+  
+    {\Huge\bfseries\textcolor{BrickRed}{Appunti di Meccanica Analitica}\par}
+    \vspace{0.5cm}
+ 
+    {\Large Basati sul corso del Prof. Vieri Mastropietro\par}
+    {\large Anno accademico 2024--2025\par}
+    \vspace{1 cm}
+   
+    {\Large\itshape Alessio Cardone\par}
+    
+    \begin{tikzpicture}
+        \draw[opacity=0.4, line width=1pt] (0,0) -- (12,0);
+    \end{tikzpicture}
+    \vspace{1.5cm}
+    
+  \begin{center}
+    \begin{tikzpicture}
+    \node[below] at (0,-0.1) {};  
+    \draw[name path=ellipse 1] (3.5,0) arc (0:360:3.5cm and 2cm);
+    \draw[name path=ellipse 2,rotate=50] (3.5,0) arc (0:360:3.5cm and 2cm);
+    \path [name intersections={of=ellipse 1 and ellipse 2}];
+    \coordinate (A) at (intersection-4);
+
+    \draw[very thick,-{latex}] (0,0)--(0,3.5);
+    \draw (0,3.5)--(0,4) node[above] {};
+    \node at (85:3.5) {};
+    \draw[shorten >=-1cm,very thick,-{latex}] (0,0)--(A);
+    \node (x1) at (-65:3.5) {};
+    \node at (-75:3) {};
+
+    \draw (0,0)--(-25:4.5) node[right] {};
+    \draw[dash pattern=on 3mm off 3mm] (0,0)--(-10:4.5) node[right] (x2) {};
+    \draw[dash pattern=on 3mm off 3mm] (0,0)--(65:4.5) node[above] {};
+    \draw[-latex,thick] (0,0)--(55:4.5) node[above] {};
+    \draw[-latex] (0,0)--(225:4.5) node[below left] {};
+    \draw[-latex] (0,0)--(135:4.5) node[above] {};
+    \node at (135:5) {};
+    \node at (130:5) {};
+
+    \coordinate (O) at (0,0);
+
+    \draw pic[-latex,draw,angle radius=0.7cm] {angle = x1--O--x2};    
+    \node at (0.8,-0.7) {};
+
+    \coordinate (y1) at (55:2);
+    \coordinate (y2) at (65:2);
+    \draw pic[-latex,draw,angle radius=1.75cm] {angle = y1--O--y2};    
+
+    \coordinate (y1) at (90:2);
+    \coordinate (y2) at (135:2);
+    \draw pic[-latex,draw,angle radius=3.0cm] {angle = y1--O--y2};    
+    \node at (-1.5,3) {};
+
+    \coordinate (y1) at (225:2);
+    \coordinate (y2) at (-65:2);
+    \draw pic[-latex,draw,angle radius=0.7cm] {angle = y1--O--y2};    
+    \node at (0,-1) {};
+
+    \draw[<-,rotate=-35,thick] (0.15,3.8) arc (-60:250:3.4mm and 1.25mm);
+    \node at (50:4.25) {};
+
+    \draw[<-,rotate=45,thick] (0.15,4) arc (60:-250:3.4mm and 1.25mm);
+    \node at (130:4.2) {};
+
+    \draw[->,thick] (-62:3) arc (-30:250:3mm and 3mm);
+    \node[right] at (-60:3) {};
+
+    \draw[thick,rotate=45] (0,0)--(60:0.2)|-(90:0.95);
+    \draw[thick,rotate=45] (0,0)--(120:0.2)|-(90:0.95);
+
+    \coordinate (P) at (-1.3,1.3);
+    \begin{scope}[shift={(0.3,-0.3)}, rotate around={-5:(-1,1)},
+        every circle/.style={x={(1cm,0.8cm)},y={(0cm,1cm)}}] 
+
+        \path[name path=ellipse 3] (0,0) circle[x radius=0.5, y radius=.5];
+        \path[name path=radial 1] (0,0) -- (55:1);
+        \path [name intersections={of=ellipse 3 and radial 1}];
+        \coordinate (edge) at (intersection-1);
+
+        \draw[fill=white,thick] (-0.9,0.9) circle[x radius=0.5,y radius=0.5];
+        \draw[fill=white,thick] (-1,1)   circle[x radius=0.5,y radius=0.5];
+        \draw[thick] ($(-0.9,0.9)+(edge)$) -- ($(-1,1)+(edge)$)
+                    ($(-0.9,0.9)-(edge)$) -- ($(-1,1)-(edge)$);
+
+        \coordinate (edge) at ($(0,0)!0.2!(edge)$);
+        \draw[thick] (-1,1) circle[x radius=0.1,y radius=0.1];
+        \fill[white] ($(P)+(edge)$) -- ($(-1,1)+(edge)$) -- ($(-1,1)-(edge)$) -- ($(P)-(edge)$) -- cycle;
+        \draw[thick] ($(P)+(edge)$) -- ($(-1,1)+(edge)$) ($(-1,1)-(edge)$) -- ($(P)-(edge)$);
+        \draw[thick] (P) circle[x radius=0.1,y radius=0.1];
+    \end{scope}
+
+    \draw[thick,-latex] (0,0)--(135:3);
+    \end{tikzpicture}
+    \end{center}
+
+
+    %VERSIONE
+    \vspace{0.3cm}
+    {\small\textbf{Ultima revisione: settembre 2025}\par}
+\end{titlepage}
+
+\begingroup
+\setlength{\emergencystretch}{3em}
+\sloppy                        
+\tableofcontents
+\endgroup
+
+\chapter*{Introduzione}
+   Questi appunti sono una versione rivista di quanto studiato durante il corso di Meccanica Analitica tenuto, nell’anno accademico 2024-2025, dal professor Vieri Mastropietro alla Sapienza. Non si tratta di una riscrittura esatta di quanto fatto a lezione, per cui il contenuto delle lezioni e quello di questo documento sono in parte diversi. In particolare si è ridotto il numero di esempi, non si sono riportati esercizi e alcune osservazioni sono state omesse. L’obiettivo è offrire un testo chiaro, sintetico e senza pretese, che possa servire da riferimento per lo studio degli argomenti principali del corso. È probabile che siano presenti refusi, sviste o errori, per i quali chiedo scusa anticipatamente. Se ne trovaste, vi invito a scrivere all’indirizzo e-mail alessio.cardone@protonmail.com così da poter aggiornare il documento negli anni futuri.
+
+    Un ringraziamento speciale va a Lorenzo Cirillo, che non solo mi ha permesso di utilizzare il bellissimo template con cui è stato realizzato il documento, ma mi ha anche aiutato nella revisione del testo e nella creazione dei grafici. Un ringraziamento va inoltre ad Andrea Amici e Beatrice Casini, che mi hanno gentilmente permesso di consultare i loro appunti.
+    \medskip
+
+\begin{tcolorbox}[colback={White!90!Cerulean},colframe=black,boxrule=0.5pt,sharp corners,enhanced]
+
+    \textbf{Ti sono stati utili questi appunti?}\\ Offrimi un caffè\,: 
+    \href{https://paypal.me/CardoneAlessio}{\texttt{paypal.me/CardoneAlessio}} (beni/servizi)
+    \begin{center}
+    \qrcode[height=2.8cm]{https://paypal.me/CardoneAlessio}
+    \end{center}
+
+\end{tcolorbox}
+
+    
+     
+\include{capitoli/1}
+\include{capitoli/2}
+\include{capitoli/3}
+\include{capitoli/4}
+\include{capitoli/5}
+\include{capitoli/6}
+\end{document}
+
+
+

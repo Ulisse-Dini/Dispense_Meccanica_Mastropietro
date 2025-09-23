@@ -1,0 +1,199 @@
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{mathrsfs}
+\usepackage{braket}
+
+\usepackage{qrcode}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{intersections,arrows.meta,angles}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{calc}
+\usepackage{capt-of}
+\usepackage{biblatex}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{libertinus}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[many]{tcolorbox}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+
+\newcommand{\R}  {\mathbb{R}}
+\newcommand{\N}  {\mathbb{N}}
+\newcommand{\lag}  {\mathcal{L}}
+\newcommand{\ham}  {\mathcal{H}}
+\newcommand{\kham}  {\mathcal{K}}
+\newcommand{\q}  {\mathbf{q}}
+\newcommand{\p}  {\mathbf{p}}
+\newcommand{\x}  {\mathbf{x}}
+\newcommand{\y}  {\mathbf{y}}
+\newcommand{\z}  {\mathbf{z}}
+\newcommand{\J}  {\mathbf{J}}
+\newcommand{\g}  {\mathbf{g}}
+\newcommand{\Q}  {\mathbf{Q}}
+\newcommand{\G}  {\mathbf{G}}
+\renewcommand{\r}  {\mathbf{r}}
+\newcommand{\w}  {\boldsymbol{\omega}}
+\newcommand{\f}  {\mathbf{f}}
+\newcommand{\del}{\partial}
+\newcommand{\deriv}  {\frac{\mathrm{d}}{\mathrm{d}t}}
+\newcommand{\de}{\mathrm{d}}
+
+\newcommand{\chapterline}{%
+  \vspace{-0.5em}%
+  \noindent\color{black!25}\rule{\linewidth}{0.4pt}%
+  \vspace{-1em}%
+}
+
+\definecolor{BrickRed}{RGB}{203,65,84}
+
+\titleformat{\chapter}[hang]
+  {\normalfont\Large\bfseries}
+  {%
+    \raisebox{-0.5ex}[0pt][0pt]{%
+      \begin{tikzpicture}[baseline={(textnode.base)}]
+        \node[inner sep=0pt] (textnode) at (0,0) {\fontsize{45}{0}\selectfont\textcolor{BrickRed}{\thechapter}};
+        \draw[opacity=0.4, line width=1pt] ([xshift=0.7em, yshift=0.5em]textnode.east) -- ++(0,-1.2em);
+      \end{tikzpicture}%
+    }%
+  }
+  {1em}{}%
+  [\chapterline]
+
+ \geometry{
+ b5paper,
+ left=20mm,
+ top=20mm,
+ }
+
+\newlength{\spacelength}
+\settowidth{\spacelength}{\normalfont\ }
+\declaretheoremstyle[
+    headfont={\bfseries\sffamily\footnotesize},
+    notefont={\normalfont},
+    bodyfont={\normalfont},
+    headpunct={\relax},
+    headformat={%
+        {\NAME\ \NUMBER.\hspace{\marginparsep}}\hskip-\spacelength{\normalsize\NOTE}},
+]{theorem}
+
+\tcolorboxenvironment{theorem}{
+  boxrule=0pt,
+  boxsep=0pt,
+  colback={White!90!Dandelion},
+  enhanced jigsaw, 
+  borderline west={1pt}{0pt}{Dandelion},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  left=5pt,
+  right=5pt,
+  breakable,
+}
+
+\declaretheorem[style=theorem, numberwithin=chapter, name=Teorema]{theorem}
+
+\let\proof\relax
+\let\endproof\relax
+
+\declaretheoremstyle[
+    headfont={\small\scshape},
+    notefont={\normalfont},
+    bodyfont={\normalfont},
+    headpunct={\relax},
+    headformat={%
+        \makebox[0pt][r]{\NAME\hspace{\marginparsep}}\hskip-\spacelength{\NOTE}},
+]{proof}
+
+\tcolorboxenvironment{proof}{
+  boxrule=0pt,
+  boxsep=5pt,
+  colback=white,
+  borderline west={1pt}{0pt}{Green!80!white},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  left=5pt,
+  right=5pt,
+  breakable,
+  before upper={\parskip=5pt}, 
+  after upper={\parskip=5pt}
+}
+\declaretheoremstyle[
+    headfont={\footnotesize\itshape},
+    notefont={\normalfont},
+    bodyfont={\normalfont},
+    headpunct={\relax},
+    headformat={%
+        \makebox[0pt][r]{\NAME\hspace{\marginparsep}}\hskip-\spacelength{\NOTE}},
+]{claim}
+
+\declaretheorem[style=proof, qed=\qedsymbol, numberwithin=chapter, name={}]{proof}
+
+
+\declaretheorem[style=claim, name=Intuizione]{Intuition}
+
+\theoremstyle{theorem}
+\newtheorem{definition}{Definizione}
+\tcolorboxenvironment{definition}{
+  boxrule=0pt,
+  boxsep=0pt,
+  colback={White!90!Cerulean},
+  enhanced jigsaw, 
+  borderline west={1pt}{0pt}{Cerulean},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  left=5pt,
+  right=5pt,
+  breakable,
+}
+
+\theoremstyle{theorem}
+\newtheorem{lemma}{Lemma}
+\tcolorboxenvironment{lemma}{
+  boxrule=0pt,
+  boxsep=0pt,
+  blanker,
+  borderline west={1pt}{0pt}{Red},
+  before skip=10pt,
+  after skip=10pt,
+  sharp corners,
+  left=5pt,
+  right=5pt,
+  breakable,
+}
+
+\theoremstyle{claim}
+\newtheorem{intu}{Intuition}
+
+\theoremstyle{claim}
+\newtheorem{solu}{Solution}
+
+\theoremstyle{claim}
+\newtheorem{remark}{Remark}
+\declaretheoremstyle[headfont=\bfseries, bodyfont=\normalfont]{claim}
+\theoremstyle{claim}
+\declaretheorem[style=claim, name={}, numberwithin=chapter]{example}
+\tcolorboxenvironment{example}{
+  boxrule=0pt,
+  boxsep=5pt,
+  colback=white,
+  borderline west={1pt}{0pt}{Black},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  left=5pt,
+  right=5pt,
+  breakable,
+  before upper={\parskip=5pt}, 
+  after upper={\parskip=5pt}
+}

@@ -1,0 +1,221 @@
+% !TeX root = ../main.tex
+\chapter{L'equilibrio nei sistemi dinamici}
+Ci poniamo ora l'obiettivo di sviluppare degli strumenti per lo studio delle configurazioni di equilibrio dei sistemi. Abbiamo già familiarizzato con questo argomento osservando esempi di punti di equilibrio rappresentati nello spazio delle fasi, inoltre abbiamo dato una definizione generale di punto di equilibrio, di punto di equilibrio stabile e instabile.
+
+\begin{theorem}[Lyapunov]
+Sia data l'equazione differenziale $\dot{\x}=\f(\x)$, con $\f:D\subseteq\R^n\to\R^n$, $\f\in C^1$, e $\bar{\x}$ punto di equilibrio.
+Se esiste $w(\x)\in C^1$ tale che:
+\begin{enumerate}
+  \item (definita positiva) 
+  \begin{equation}
+    w(\x)\ge 0 \;\forall\,\x\in D, \qquad w(\x)=0 \iff \x=\bar{\x}.
+  \end{equation}
+  \item (decrescente lungo le soluzioni)
+  \begin{equation}
+    \deriv\, w(\x(t)) \le 0 .
+  \end{equation}
+\end{enumerate}
+Allora $\bar{\x}$ è un equilibrio stabile.
+\end{theorem}
+
+\begin{proof}
+    Vogliamo dimostrare che 
+    \begin{equation}
+        \forall \varepsilon>0 \exists, \delta>0: \Phi(B_\delta(\bar{x})) \subset B_\varepsilon(\bar{\x})
+    \end{equation}
+    Prendiamo allora una palla di raggio $\varepsilon$ centrata in $\bar{\x}$, $B_\varepsilon(\bar{\x})$, e consideriamo la frontiera della palla, ovvero l'insieme
+    \begin{equation}
+        \del B_\varepsilon(\bar{\x}) = \{\x\in D: \|\x-\bar{\x}\|=\varepsilon \}.
+    \end{equation}
+    Sappiamo dall'analisi che $\del B_\varepsilon(\bar{\x})$ è chiuso e quindi $w(\x)$, che è $C^1$ e quindi continua, ammette minimo su $\del B_\varepsilon(\bar{\x})$:
+    \begin{equation}
+        \exists\,h := \min_{\x\in\del B_\varepsilon(\bar{\x})} w(\x)
+    \end{equation}
+    Poiché $\bar{\x} \notin \partial B_\varepsilon(\bar{\x})$, $h>0$. Essendo $w(\x)$ continua e $w(\bar{\x}) = 0$, il teorema dei valori intermedi mi garantisce l'esistenza di un raggio $\delta$ attorno a $\bar{\x}$ piccolo a sufficienza affinché $w(\x)<h$ per $\x\in B_\delta(\bar{\x})$. Ora, se esistesse $\x_0\in B_\delta(\bar{\x})$ tale che $\Phi(\x_0,t) \notin B_\varepsilon(\bar{\x})$, allora (per la continuità di $\Phi$) deve esistere un tempo $\bar{t}$ tale che $\Phi(\x_0,\bar{t})\in\partial B_\varepsilon(\bar{\x})$, ma allora se valuto $w(\x)$ sulla soluzione $\x(t) = \Phi(\x_0,t)$ avrei
+    \begin{equation}
+        \deriv w(\x(t)) >0
+    \end{equation}
+    perché $w(\x_0)<h$ e sicuramente $w(\partial B_\varepsilon(\bar{\x}))\geq 0$, dall'assurdo segue la tesi.
+\end{proof}
+
+    Osserviamo che $w(x)$ può avere derivata nulla lungo le traiettorie e dunque essere, per definizione, un integrale primo del moto. Questa osservazione è al cuore del seguente teorema:
+\begin{theorem}
+    \textbf{(Dirichlet)}\\
+    Dato un sistema meccanico soggetto a forze conservative e vincoli ideali, di lagrangiana $\lag(\q,\,\dot{\q}) = T-V$, se $\bar{\q}$ è un punto di minimo isolato per $V(\q)$, allora $\bar{\q}$ è un punto di equilibrio stabile per il sistema.
+\end{theorem}
+\begin{proof}
+    
+    La dimostrazione si fonda sul teorema di Lyapunov, usando come $w(\x) = w(\q, \dot{\q})$ la funzione energia  $E(\q,\dot{\q})$. Supponiamo per semplicità che i vincoli siano indipendenti dal tempo e quindi che $E(\q,\dot{\q}) = T+V$. Essendo $V$ definito a meno di una costante posso ridefinire $E$:
+    \begin{equation}
+        E(\q,\dot{\q}) = T+V \to E(\q,\dot{\q}) = T+V -V_{\mathrm{min}}
+    \end{equation}
+    L'energia è un integrale primo del moto, dunque soddisfa la richiesta 2 di Lyapunov. Il potenziale è sempre maggiore di $V_\mathrm{min}$ e $T$ è definita positiva, quindi $E\geq0$. $E$ si annulla solo se è nulla sia l'energia cinetica, dunque $\dot{\q}=0$, che è sempre vero per un punto di equilibrio, sia il potenziale $V-V_\mathrm{min}$. Segue che $E(\bar{\q})=0$ e quindi che $\bar{\q}$ è un punto di equilibrio stabile.
+\end{proof}
+    Questo riduce la discussione della stabilità di un punto di equilibrio di un sistema meccanico allo studio dei minimi della funzione potenziale. Solitamente per fare questo basta scrivere l'hessiano di $V$ e applicare il criterio degli autovalori, qualora questo fallisse è sempre possibile tentare con altre tecniche note dai corsi di analisi. Osserviamo inoltre che il teorema di Dirichlet non è una doppia implicazione: esistono dei punti di equilibrio stabile che non sono minimi isolati del potenziale.
+    
+    \begin{theorem}
+    \textbf{Stabilità nei sistemi non lineari}\\
+     Sia dato un sistema $\dot{\x} = \f(\x)$ e $\bar{\x}$ punto di equilibrio. Sia $J_{i,j} = \frac{\del \f}{\del x_i\del x_j}$ lo Jacobiano di $\f$. Allora se tutti gli autovalori $\lambda_k$ di $A=J(\bar{\x})$ hanno $\Re(\lambda_k)< 0$, il punto è asintoticamente stabile, mentre se esiste anche un solo autovalore con $\Re(\lambda_k)>0$ allora il punto è instabile. 
+    \end{theorem}
+    \begin{proof}
+        Per semplificare la dimostrazione supponiamo che gli autovalori siano tutti distinti e che $\bar{\x}=0$. Linearizziamo il sistema, ricordando che $\f(\bar{\x}) = 0$:
+        \begin{equation}
+            \dot{\x} = \f(\x) = \f(\bar{\x}) + A\x + N(\x) = A\x + N(\x),
+        \end{equation}
+        con $N(\x) = \mathrm{o}(\|\x\|)$. Avendo supposto che gli autovalori siano tutti distinti, esisterà una matrice di passaggio $B$ tale che
+        \begin{equation}
+            \Lambda = B^{-1}AB,\,\mathrm{diagonale}.
+        \end{equation} 
+        I vettori nella nuova base si otterranno come $\y = B^{-1}\x$, dunque
+        \begin{equation}
+            \dot{\x} = A\x + N \iff B^{-1}\dot{\y} = AB^{-1}\y + \bar{N} \iff \dot{\y} = \Lambda y + \tilde{N} 
+        \end{equation}
+        e $\tilde{N} = \mathrm{o}\|y\|$. Proviamo a dimostrare la prima affermazione del teorema, per cui dovrebbe esistere un $\alpha>0$ tale che $\lambda_k <-\alpha,\, \forall \lambda_k$ nello spettro di $A$. Possiamo definire la funzione
+        \begin{equation}
+        H = \frac{1}{2}\sum_{i} y_i^2,
+        \end{equation}
+        dove $y_i$ sono le componenti del vettore $\y$, e derivarla rispetto al tempo per ottenere
+        \begin{equation}
+            \deriv H(t) = \sum_i y_i \dot{y}_i = \sum_i y_i \lambda_i y_i = \sum_i \lambda_i y_i^2 < -\alpha \sum_i y_i^2 = -\alpha H
+        \end{equation}
+        Allora $H(t) < e^{-\alpha t}$ per il \emph{Lemma di Gromwall} e dunque $H(t\to \infty) = 0.$ Essendo $H$ definita positiva, questo può succedere solo se $y_i(t\to \infty) = 0\, \forall i,$ ovvero se $\y \to 0$, ciò dimostra che $0$ è un punto di equilibrio asintoticamente stabile.
+
+        Supponiamo ora che esista almeno un $\lambda \in \mathrm{Sp}(A)$ tale che $\lambda\geq\alpha>0$. In generale supponiamo che $\lambda_1,\dots, \lambda_s$ siano positivi e $\lambda_{s+1},\dots,\lambda_n$ siano negativi, ammettendo anche i casi limite di tutti autovalori positivi e un solo autovalore positivo. Cambiamo base in modo che $A\to \Lambda$ diagonale, per cui anche i vettori cambieranno $\x \to \z$ e il sistema linearizzato diverrà
+        \begin{equation}
+            \dot{\x} = A\x + N(\x) \to \dot{\z} = A\z + \tilde{N}(\z). 
+        \end{equation}
+        Per chiarezza distinguiamo le componenti di $z$ in modo da separare quelle associate ad autovalori positivi e quelle associate ad autovalori negativi:
+        \begin{equation}
+            z= (z_1,\dots,z_n) = (x_1,\dots,x_{s},y_{s+1},\dots,y_n).
+        \end{equation}
+        Ora, lo spettro di $A$ è un insieme limitato per cui $\exists\,\beta >0$ tale che $\lambda_k > -\beta \,\forall k\in\{1,\dots,n\}$. Utilizziamo nuovamente la funzione $H$ con i nuovi vettori:
+        \begin{equation}
+            H = \frac{1}{2}\sum_{k=1}^n z_k^2 \implies \deriv H(\z(t)) = \sum_{k=1}^n z_k \dot{z}_k = \sum_{k=1}^n \lambda_k z_k^2 = \sum_{k=1}^s \lambda_k x_k^2 +\sum_{k=s+1}^n\lambda_k y_k^2
+        \end{equation}
+    
+    ma i $\lambda_k$ negativi sono pur sempre maggiori di $-\beta$ e i $\lambda_k$ positivi sono sempre maggiori di $\alpha$, dunque sostituendo tutti gli autovalori positivi con $\alpha$ otteniamo una sommatoria positiva più piccola e sostituendo gli autovalori negativi con $-\beta$ otteniamo una sommatoria negativa più piccol (ovvero di modulo maggiore, ma negativa). Dunque possiamo stimare la derivata dell'energia come
+    \begin{equation}
+        \deriv H \geq \alpha\sum_{k=1}^{s} x^2_k -\beta\sum_{k=s+1}^n y_k^2=\alpha \|\x\|^2-\beta\|\y\|^2.
+    \end{equation}
+    Definiamo ora l'insieme
+    \begin{equation}
+    C=\{\z \in \R^{n}:\,\alpha \|\x\|^2\geq 2\beta \|\y\|^2\}.
+    \end{equation}
+    Se $\z\in C$ allora
+    \begin{equation}
+        \alpha \|\x\|^2- 2\beta \|\y\|^2\geq0 \iff 2\alpha \|\x\|^2- 2\beta \|\y\|^2\geq\alpha \|\x\|^2,
+    \end{equation}
+    per cui
+    \begin{equation}
+        \alpha \|\x\|^2- \beta \|\y\|^2\geq\frac{\alpha}{2} \|\x\|^2,
+    \end{equation}
+    ovvero
+    \begin{equation}
+        \deriv H(t) \geq \frac{\alpha}{2} \|\x\|^2.
+    \end{equation}
+    Un'altra conseguenza di $z\in C$ è che
+    \begin{equation}
+        \|\y\|^2 \leq \frac{\alpha}{2\beta} \|\x\|^2
+    \end{equation}
+    dunque
+    \begin{equation}
+        \|\z\|^2 = \|\x\|^2+\|\y\|^2 \leq\|\x\|^2 + \frac{\alpha}{2\beta}\|\x\|^2.
+    \end{equation}
+    Questo mi permette di stimare $\|\x\|^2 \leq \|\z\|^2/k$, e quindi di maggiorare la derivata dell'energia in termini dell'energia stessa:
+    \begin{equation}
+        \deriv H(z) \geq \frac{1}{2}\alpha k \|z\|^2 = \alpha k H(z).
+    \end{equation}
+    Gromwall permette di concludere che $H(t)\geq H_0 \exp(\alpha k t)$, per cui $\z$ si allontana dal punto di equilibrio.
+    Ci chiediamo ora se sia possibile che $\Phi(z,t)$ possa uscire dal cono $C$ ed entrare in una regione in cui il punto di equilibrio è attrattivo. Questo non toglierebbe nulla al fatto che il punto è instabile, tuttavia ci chiediamo se questo sia possibile. Possiamo però dimostrare facilmente che questo non può avvenire considerando la funzione che definisce il cono:
+    \begin{equation}
+        \tilde{H} = \alpha\|\x\|^2-2\beta\|\y\|^2.
+    \end{equation}
+    Essa è una funzione non decrescente di $\z$ perché
+    \begin{equation}
+        \deriv \tilde{H} = 2\alpha\sum_k\lambda_k x^2_k-4\beta\sum_j \lambda_j y_j^2,
+    \end{equation}
+    dove si è sostituito $\dot{x}_i=\lambda_ix$ come sopra. 
+    Essendo entrambi $\beta$ che i $\lambda_j$ che appaiono nella sommatoria di $y_i$ negativi, la derivata è positiva.
+     Quando $\z \in C$, $\tilde{H}>0$. Quando $\z \in \del C$, $\tilde{H}=0$. 
+     Se $\z$ uscisse dal cono allora seguirebbe un assurdo.
+\end{proof}
+    \section{Piccole oscillazioni}
+    Consideriamo un sistema lagrangiano indipendente dal tempo con un punto di equilibrio stabile in $\bar{\q}$. Sviluppiamo in Taylor la Lagrangiana:
+    \begin{equation}
+    \begin{aligned}
+        &\lag(\q,\dot{\q},t) = \frac{1}{2}\braket{\dot{\q}|A\dot{\q}}-V(\q) = \\
+        &=\frac{1}{2}\braket{\dot{\q}|A(\bar{\q})\dot{\q}}-V(\bar{\q})-\nabla V(\bar{\q})-\braket{(\q-\bar{\q})|H(\q-\bar{\q})} +O(\|\q-\bar{\q}\|^3),
+    \end{aligned}
+    \end{equation}
+    dove $H$ è l'hessiano di $V$. Se $\bar{\q}$ è di equilibrio allora $\nabla V(\bar{\q})=0$. Le costanti additive non influenzano il moto quindi trascuriamo $V(\bar{q})$. La matrice di metrica cinetica è calcolata nel punto di equilibrio, così come lo è la matrice Hessiana. Poniamo ora, per semplicità, $\bar{\q}=0$. Questa ipotesi non cambierà la validità dei risultati che troveremo. La Lagrangiana approssimata è 
+    \begin{equation}
+        \lag = \frac{1}{2}\braket{\dot{\q}|A\dot{\q}}-\braket{\q|H\q}.
+    \end{equation}
+    È detta \emph{Lagrangiana linearizzata} perché le equazioni di Eulero-Lagrange diventano
+    \begin{equation}
+        A\ddot{\q} = -H\q,
+    \end{equation}
+    dunque sono equazioni differenziali lineari. 
+    Sappiamo che $A$ è simmetrica, dunque è diagonalizzabile tramite una matrice ortogonale $U_1$. Facciamo un cambio di base $q\to q_1$, $q = U_1q_1$:
+    \begin{equation}
+        \lag = \frac{1}{2}\braket{ U_1\dot{\q}_1|AU_1\dot{\q}_1}- \braket{U_1\q_1|HU_1\q_1}
+    \end{equation}
+    possiamo portare una matrice da un lato all'altro del prodotto scalare facendone l'aggiunto hermitiano. Poiché le matrici sono reali questo significa trasporle:
+    \begin{equation}
+        \lag = \frac{1}{2}\braket{\q_1|U_1^tAU_1\q_1} - \braket{\q_1|U_1^tHU_1\q}
+    \end{equation}
+    nel primo prodotto scalare appare $\Lambda$, la forma diagonalizzata della matrice $A$:
+    \begin{equation}
+        \lag = \frac{1}{2}\braket{\dot{\q_1}|\Lambda\dot{\q_1}} - \braket{\q_1|U_1^tHU_1\q_1}
+    \end{equation}
+    Facciamo un altro cambio di base definendo $\q_1=\sqrt{\Lambda}^{-1}\q_2$. Con $\sqrt{\Lambda}$ indichiamo una matrice che ha come entrate le radici degli autovalori.
+    \begin{equation}
+        \lag =\frac{1}{2}\braket{\sqrt{\Lambda}^{-1}\dot{\q_2} |\Lambda \sqrt{\Lambda}^{-1}\dot{\q_2}}- \braket{\sqrt{\Lambda}^{-1}\q_2|U_1^tHU_1\sqrt{\Lambda}^{-1}\q_2}
+    \end{equation}
+    Possiamo portare $\sqrt{\Lambda}^{-1}$ dall'altro lato del prodotto scalare senza problemi. Essa è del tipo
+    \begin{equation}
+        \sqrt{\Lambda}^{-1} = \begin{bmatrix}
+            \frac{1}{\sqrt{\lambda_1}}&0&\dots&0\\
+            \vdots & \ddots &0&\vdots& \\
+            0 &\dots &\dots  & \frac{1}{\sqrt{\lambda_l}}
+        \end{bmatrix}
+    \end{equation}
+    per cui è simmetrica e quindi invariante per trasposizione. Il prodotto $\sqrt{\Lambda}^{-1}\Lambda\sqrt{\Lambda}^{-1}$ è l'identità. Dunque
+    \begin{equation}
+        \lag = \frac{1}{2}\braket{\dot{\q}_2|\dot{\q}_2}-\braket{\q_2|\sqrt{\Lambda}^{-1}U_1^tHU_1\sqrt{\Lambda}^{-1}\q_2}
+    \end{equation}
+    La matrice $\sqrt{\Lambda}^{-1}U_1^tHU_1\sqrt{\Lambda}^{-1}$ è simmetrica. Il motivo è che $H$ è simmetrico per il teorema di Schwarz. Esso è quindi la matrice associata ad una qualche forma bilineare simmetrica. Quando moltiplichiamo per la matrice $U_1$ e per $U_1^t$ stiamo cambiando la base di rappresentazione della forma bilineare, tuttavia essa era e rimarrà simmetrica. La successiva moltiplicazione per $\sqrt{\Lambda}^{-1}$ conserva il fatto che la matrice è simmetrica perché stiamo moltiplicando per una matrice diagonale. Dunque anche questa matrice è diagonalizzabile con una matrice ortogonale:
+    \begin{equation}
+        U_2^t\sqrt{\Lambda}^{-1}U_1^tHU_1\sqrt{\Lambda}^{-1}U_2 = \Omega = \begin{bmatrix}
+            \omega_1^2 & \dots &0\\
+            \vdots & \ddots & \vdots\\
+            0 & \ddots & \omega_l^2
+        \end{bmatrix}
+    \end{equation}
+    Chiamiamo gli autovalori della matrice $\omega^2_k$ perché l'Hessiano sarà generalmente definito positivo. Cambiare base da $q_2\to q_3$ mediante questa matrice $U_2$ fa diventare la Lagrangiana
+    \begin{equation}
+        \lag = \frac{1}{2}\braket{\dot{\q}_3|\dot{\q}_3} - \braket{\q_3|\Omega \q_3}.
+    \end{equation}
+    Le equazioni di Eulero-Lagrange in queste variabili sono
+    \begin{equation}
+        \ddot{\q}_3 = -\Omega\q_3,\quad q_{3,i} = A_i\cos(\omega^2_it+\varphi_i).
+    \end{equation}
+    le $\omega_k$ determinano le \emph{frequenze delle piccole oscillazioni} del sistema. Trovare gli autovalori è più semplice del previsto grazie alla formula di Binet sui determinanti:
+    \begin{equation}
+        \begin{aligned}
+            &\det(\sqrt{\Lambda}^{-1}U_1^tHU_1\sqrt{\Lambda}^{-1}-\omega^2\mathrm{Id}) = \det(\sqrt{\Lambda}^{-1}(U_1^tHU_1-\omega^2\Lambda)\sqrt{\Lambda}^{-1})=\\
+            &=\det(\sqrt{\Lambda}^{-1})^2\det(U_1^tHU_1-\omega^2\Lambda)=\det(\sqrt{\Lambda}^{-1})^2\det(U_1^t(H-\omega^2U_1\Lambda U_1^t)U_1)=\\
+            &=\det(\sqrt{\Lambda}^{-1})^2\det(U_1^tHU_1-\omega^2\Lambda)=\det(\sqrt{\Lambda}^{-1})^2\det(H-\omega^2A)
+        \end{aligned}
+    \end{equation}
+    poiché $\det(\sqrt{\Lambda}^{-1})\neq 0$ l'equazione secolare è
+    \begin{equation}
+        \det(H-\omega^2A)=0.
+    \end{equation}
+    Gli autovettori si trovano da
+    \begin{equation}
+        (H-\omega^2A)\x =0,
+    \end{equation}
+    in quanto sono gli appartenenti al ker di $\sqrt{\Lambda}^{-1}U_1^tHU_1\sqrt{\Lambda}^{-1}-\omega^2\mathrm{Id}$.
+    
+    
