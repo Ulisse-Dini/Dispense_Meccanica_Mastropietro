@@ -78,7 +78,7 @@ sia invertibile. Ma questa coincide con la matrice dell'energia cinetica, che ab
     \begin{equation}
         \Phi(\z,t) = \Phi(\z,0) + t\del_t \Phi(\z,0) + O(t^2),
     \end{equation}
-    Ma $\Phi(\z,t)=\z$ per definizione, mentre essendo $\Phi$ soluzione di $\dot{\z} = E\del_\z \ham$, 
+    Ma $\Phi(\z,0)=\z$ per definizione, mentre essendo $\Phi$ soluzione di $\dot{\z} = E\del_\z \ham$, 
     \begin{equation}
         \del_t \Phi = \dot{\z} = E\del_\z \ham(\z) \equiv f(\z).
     \end{equation}
@@ -345,12 +345,18 @@ sia invertibile. Ma questa coincide con la matrice dell'energia cinetica, che ab
     Una cosa utile da tenere a mente per trovare i parametri che rendono canonica una trasformazione è che la funzione generatrice deve essere $C^2$, dunque deve rispettare il teorema di Schwarz. È possibile a volte trovare i parametri corretti imponendo che le derivate miste della funzione coincidano. Nella maggior parte degli esercizi, tuttavia, basta imporre $\{Q,P\}=1.$
    
     \section{Variabili azione-angolo e integrabilità}   
-    Supponiamo che esista una trasformazione canonica indipendente dal tempo che mappi l'hamiltoniana $\ham(q,p)\to\kham(A)$. Le variabili $q$ vengono mappate in $\varphi\in \mathbb{T}^l$, dove $\mathbb{T}^l$ è un toro $l$-dimensionale, ovvero il prodotto cartesiano di $l$ intervalli $[0,2\pi)$, mentre $p\to A\in\R^l$.
-     $(\varphi,A)$ sono dette \emph{variabili azione-angolo.}  In queste variabili le equazioni del moto sono
+    Supponiamo che esista una trasformazione canonica 
+    indipendente dal tempo che mappi l'hamiltoniana
+    $\ham(q,p)\to\kham(A)$. Le variabili $q$ vengono mappate
+    in $\varphi\in \mathbb{T}^l$, dove $\mathbb{T}^l$ è un toro 
+    $l$-dimensionale, ovvero il prodotto cartesiano di $l$ 
+    intervalli $[0,2\pi)$, mentre $p\to A\in\R^l$.
+    $(\varphi,A)$ sono dette \emph{variabili azione-angolo.} 
+    In queste variabili le equazioni del moto sono
     \begin{equation}
         \begin{cases}
-            \dot{A_k} = 0\\
-            \dot{\varphi_k} = \omega_k(A)            
+            \dot{A}_k = 0\\
+            \dot{\varphi}_k = \omega_k(A)            
         \end{cases} \implies 
         \begin{cases}
             A_k = A_k(0)\\

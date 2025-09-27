@@ -7,13 +7,16 @@
     \begin{equation}
        \phi(x_1,\dots, x_{3n},\dot{x}_1,\dots, \dot{x}_{3n},t) \leq 0.
    \end{equation}
-   Un esempio di vincolo bilatero è una sbarra rigida che unisce due punti materiali $\x,\,\y$. Se la sbarra è di lunghezza $l$, allora la distanza tra i due punti $\x,\,y$ deve essere esattamente uguale ad $l$ ad ogni tempo $t$, dunque il vincolo sarà descritto dall'equazione
+   Un esempio di vincolo bilatero è una sbarra rigida che unisce due punti materiali
+    $\x,\,\y$. Se la sbarra è di lunghezza $l$, 
+    allora la distanza tra i due punti deve essere
+    esattamente uguale ad $l$ ad ogni tempo $t$, dunque il vincolo sarà descritto dall'equazione
    \begin{equation}
        \|\x-\y\|=l \iff (x_1-y_1)^2 + (x_2-y_2)^2+(x_3-y_3)^2 -l^2 = 0.
    \end{equation}
    un vincolo unilatero è invece una corda di lunghezza $l$, che impedisce ai due punti $\x,\,\y$ di avere una distanza maggiore di $l$, ma permette che la distanza sia anche inferiore:
    \begin{equation}
-       \|x-y\| \leq l \iff  (x_1-y_1)^2 + (x_2-y_2)^2+(x_3-y_3)^2 -l ^2\leq 0.
+       \|\x-\y\| \leq l \iff  (x_1-y_1)^2 + (x_2-y_2)^2+(x_3-y_3)^2 -l ^2\leq 0.
    \end{equation}
    Un vincolo $\phi$ è detto \emph{olonomo} se non dipende dalle velocità $\dot{x}_1,\dots,\dot{x}_{3n}$, mentre è detto \emph{anolonomo} se ne dipende. È detto reonomo se dipende dal tempo, scleronomo se non ne dipende\footnote{Rheo=scorrere, skleros=rigido, olos=intero.}.
 
@@ -118,7 +121,15 @@
      \begin{equation}
      y = \sqrt{R^2-R^2\cos^2\theta} = R\sin\theta,
      \end{equation}
-     dunque c'è libertà nella scelta della parametrizzazione del vincolo. In generale, data una funzione $g(x_{m+1},\dots,\,x_{3n})$, posso trovare dei parametri $l=3n-m$ parametri $q_1,\dots, q_l$ in modo da trasformare $g$ in $g(q_,\dots,q_l)$. La libertà nella scelta di $q_1,\dots, q_l$ ha fatto guadagnare a questi parametri il nome di \emph{coordinate generalizzate}. Per motivi storici sono anche note come \emph{coordinate lagrangiane}.
+     dunque c'è libertà nella scelta della parametrizzazione 
+     del vincolo. In generale, data una funzione 
+     $g(x_{m+1},\dots,\,x_{3n})$, posso trovare 
+     $l=3n-m$ parametri $q_1,\dots, q_l$ in modo da trasformare $g$ 
+     in $g(q_1,\dots,q_l)$. 
+     La libertà nella scelta di $q_1,\dots, q_l$ ha
+      fatto guadagnare a questi parametri il nome di 
+      \emph{coordinate generalizzate}. Per motivi storici 
+      sono anche note come \emph{coordinate lagrangiane}.
 
     \begin{example}
         \textbf{La pallina e il cono ellittico}\\

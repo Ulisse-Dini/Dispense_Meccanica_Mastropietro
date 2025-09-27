@@ -133,7 +133,13 @@ Ci avviamo dunque a discutere il problema dell'\emph{esistenza e unicità della 
  \begin{equation}
      x(t) = x_0 +\int_{t_0} ^t \de \tau f(x(\tau),\,\tau).
  \end{equation}
-Dunque \emph{se} la successione $x_n(t)$ converge, e \emph{se} è possibile scambiare il limite e l'integrale, allora esiste una funzione $x(t)$, che è il limite $n\to \infty$ di $x_n(t)$, che risolve l'equazione integrale. Ma l'equazione integrale è equivalente al pdC, dunque abbiamo dimostrato l'esistenza di una soluzione. Occorre però giustificare la convergenza di $x_n(t)$ e lo scambio di limite e integrale.
+Dunque \emph{se} la successione $x_n(t)$ converge, e \emph{se} 
+è possibile scambiare il limite e l'integrale, allora esiste 
+una funzione $x(t)$, che è il limite $n\to \infty$ di $x_n(t)$, 
+che risolve l'equazione integrale. Ma l'equazione integrale 
+è equivalente al pdC, dunque avremmo dimostrato la prima parte del
+teorema. Occorre però giustificare la convergenza di
+ $x_n(t)$ e lo scambio di limite e integrale.
 
 Osserviamo che
 \begin{equation}
@@ -164,7 +170,9 @@ a questo punto usiamo la lipschitzianeità di $f$:
     \begin{equation}
         |x_{n+1}(t)-x_n(t)|\leq \frac{A^nM}{(n+1)!}(t-t_0)^{n+1},
     \end{equation}
-    relazione che può essere provata oltre ogni dubbio procedendo per induzione su $n$. Abbiamo appena dimostrato che la successione $x_n$ è una successione di Cauchy, ovvero
+    relazione che può essere provata oltre ogni dubbio procedendo
+     per induzione su $n$. Abbiamo appena provato tutto il necessario
+     per dimostrare che la successione $x_n$ è di Cauchy, ovvero
     \begin{equation}
         \forall \varepsilon >0\,\exists N_\varepsilon \in \N : \forall n>N_\varepsilon, p \in \N,\,|x_{n+p}-x_n|<\varepsilon
     \end{equation}
@@ -176,7 +184,7 @@ a questo punto usiamo la lipschitzianeità di $f$:
     \begin{equation}
         |x_{n+p}(t) - x_n(t)| \leq \sum_{j=0}^{p-1}|x_{n+j+1}(t)-x_{n+j}(t)|,
     \end{equation}
-    ma la serie è a termini positivi quindi 
+    ma, per via dei moduli, la serie è a termini positivi  e quindi 
     \begin{equation}
        \sum_{j=0}^{p-1}|x_{n+j+1}(t)-x_{n+j}(t)|\leq \sum_{j=0}^{\infty}|x_{n+j+1}(t)-x_{n+j}(t)| \leq\sum_{j=0}^{\infty}\frac{A^{n+j}M}{(n+j+1)!}(t-t_0)^{n+j+1}.
     \end{equation}

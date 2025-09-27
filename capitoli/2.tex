@@ -117,23 +117,55 @@
 
     \section{Spazio delle fasi}
     \label{ritratto}
-    Lo spazio delle fasi per un sistema unidimensionale è il piano $(x,\dot{x})$. È utile in molti casi fare un \emph{ritratto di fase} dei sistemi che si studiano perché esso permette un'analisi qualitativa del moto, ovvero permette di conoscere informazioni sui tipi di moti che avvengono senza risolvere analiticamente il sistema, cosa che è spesso impossibile. Un ritratto di fase viene disegnato rappresentando nello spazio delle fasi le curve di livello dell'energia. Questo vuol dire che guardiamo l'energia come una funzione di velocità e posizione:
+    Lo spazio delle fasi, per un sistema unidimensionale,
+    è il piano $(x,\dot{x})$. Possiamo definire una funzione $H$ che
+    associa alla posizione e alla velocità, ossia al 
+    vettore $(x,\dot{x})$, l'energia $E$ corrispondente:
     \begin{equation}
-        E = E(x,\dot{x}) = \frac{m}{2}\dot{x}^2+V(x)
+        \begin{aligned}
+        &H: (x,\dot{x}) \mapsto E  \\  
+        &H(x,\dot{x}) = \frac{m}{2}\dot{x}^2+V(x)
+        \end{aligned}
     \end{equation}
-    e grafichiamo nello spazio delle fasi le curve che corrispondono all'insieme
+    Fissiamo ora l'energia ad un certo valore $\bar{E}$. 
+    Chiamiamo \emph{curva di livello} della funzione $H$ 
+    ad altezza $\bar{E}$ l'insieme dei punti $(x,\dot{x})$ dello 
+    spazio delle fasi tali che $H(x,\dot{x})=\bar{E}$:
     \begin{equation}
-        M_{\bar{E}} = \{(x,\dot{x}): E(x,\dot{x})=\bar{E}=\mathrm{cost}\}
+        M_{\bar{E}} = \{(x,\dot{x}): H(x,\dot{x})=\bar{E}=\mathrm{cost}\}
     \end{equation}
-    detto insieme di livello. Per capire come fare un ritratto di fase consideriamo un punto materiale soggetto al potenziale $V(x) = \frac{k}{2}x^2$. L'energia corrispondente $E(x,y)=\frac{m}{2}y^2+\frac{k}{2}x^2$ è l'equazione di un paraboloide.
+    La rappresentazione grafica di $M_{\bar{E}}$ nel 
+    piano $(x,\dot{x})$
+    è detta \emph{ritratto di fase} del sistema. Da un punto di
+    vista analitico la questione di disegnare un ritratto di fase è
+    già chiara: data la funzione $H:(x,\dot{x})\mapsto E$ occorre 
+    percorrere la freccia in senso contrario:
+     $E\mapsto (x,\dot{x})$, ovvero
+    invertire $H$ come funzione di $E$. D'altra parte questa
+    operazione può essere molto complicata e non è mai conveniente
+    invertire esplicitamente la funzione $H$.\\
+    La forza del ritratto di fase è infatti quella di permettere di 
+    capire delle informazioni sul sistema senza fare operazioni
+    analitiche complesse. Per capire l'idea usciamo dall'astratto 
+    e consideriamo un esempio. Abbiamo una particella
+    soggetta ad potenziale $V(x) = \frac{k}{2}x^2$. L'energia 
+    corrispondente è 
+    \begin{equation}
+        H(x,\dot{x})=\frac{m}{2}\dot{x}^2+\frac{k}{2}x^2
+    \end{equation}
+    che si riconoscerà essere un paraboloide in funzione di
+     $x,\dot{x}$. Rappresentiamo $H$ con un grafico 3D insieme ad un 
+     piano ad altezza $\bar{E}$:
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\linewidth]{img/paraboloide_con_piano.png}
+        \includegraphics[width=0.9\linewidth]{img/paraboloide_con_piano.png}
         \caption{Energia dell'oscillatore armonico intersecata con un piano ad altezza $E=\bar{E}.$ }
     \end{figure}
-    La curva di livello è l'intersezione tra il piano ad altezza $\bar{E}$ e la funzione energia. Vediamo dal grafico sopra che si tratterà di un cerchi o, in generale per $m\neq k$, ellissi:
+    Se $m=k$ allora l'intersezione tra il piano e $H$ sarà 
+    una circonferenza
+    \footnote{in generale per $m\neq k$, si tratta di  ellissi}:
     \begin{center}
-    \begin{tikzpicture}[scale=2]
+    \begin{tikzpicture}[scale=1]
       % Assi
       \draw[->] (-2.2, 0) -- (2.2, 0) node[right] {$x$};
       \draw[->] (0, -2.2) -- (0, 2.2) node[above] {$\dot{x}$};
@@ -153,19 +185,77 @@
     
     \end{tikzpicture}  
     \end{center}
-    
-     Per creare il ritratto di fase nella pratica basta graficare la funzione $V(x)$:
-      \begin{center}
-        \includegraphics[width=0.8\linewidth]{img/oscillatore_armonico.png}
+    Ci si può convincere di questo in due modi. Il primo è guardare il grafico 3D
+    e immaginare di guardare dall'alto l'intersezione. 
+    Il secondo è osservare che
+    \begin{equation}
+        \alpha \dot{x}^2 + \beta x^2 = E
+    \end{equation}
+    è l'equazione di una circonferenza per $\alpha=\beta$.
+    derivando la curva si ottiene il vettore velocità:
+    \begin{equation}
+    \boldsymbol{\tau} = \begin{bmatrix}
+        2\alpha \dot{x}\\
+        2\beta x
+    \end{bmatrix}
+    \end{equation}
+    che rappresentiamo nel ritratto di fase con le frecce blu.\\ 
+    Abbiamo appena generato il nostro primo ritratto di fase, tuttavia
+    non è ragionevole pensare di immaginare ogni volta il grafico 3D 
+    di $H$. Nella pratica la questione è molto più semplice:
+    Per prima cosa facciamo un grafico 
+    della funzione $V(x)$. In generale per farlo sarà necessario fare
+    un piccolo studio di funzione, ma noi sappiamo già che si tratta 
+    di una parabola:
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{img/oscillatore_armonico.png}
         \captionof{figure}{Potenziale dell'oscillatore armonico}
-        \end{center}
-    che è, di fatto, la proiezione del grafico $3D$ sul piano $\dot{x}=0$. Immaginiamo che $V(x)$ sia una guida in un piano verticale su cui viene posta una pallina. La pallina oscillerà attorno al centro $x=0$. Se parte con velocità positiva e posizione positiva la sua velocità aumenta fino a $x=0$, poi diminuisce fino a diventare nulla, poi diventa negativa e la guida viene percorsa al contrario. Il moto si ripete uguale a se stesso infinite volte, per cui otteniamo il grafico di fase mostrato sopra. Le frecce blu in figura rappresentano il senso di percorrenza della curva: per posizioni positive e velocità negative la pallina aumenta il modulo della velocità e si sposta verso posizioni negative, per cui l'orbita è percorsa in senso orario, come indicato dalle frecce. Analiticamente le frecce si ottengono derivando la curva di livello che parametrizza l'insieme $M_{\bar{E}}$. 
+    \end{center}
+    Questo grafico è la proiezione del grafico 3D precedente 
+    sul piano $\dot{x}=0$, ma è molto più semplice da fare.
+    Per passare al ritratto di fase ricordiamo che
+    \begin{equation}
+        \dot{x} = \pm \sqrt{2/m(E-V(x))} = \pm\sqrt{2/m\left(
+            E-\frac{k}{2}x^2\right)}
+    \end{equation}
 
-    Se l'energia della pallina è $E=0$ vediamo che è bloccata nel punto $x=0$. Il punto $(x,\dot{x})=(0,0)$ è quindi una soluzione di equilibrio stabile. Per $E<0$ il moto non può avvenire. Possiamo trovare il periodo dei moti periodici tramite il teorema discusso sopra, come viene svolto nel seguente esempio:
+    dunque $\dot{x}$ ha un grafico che è (qualitativamente
+    parlando) quello di $V(x)$ "ribaltato". Insomma, se $V(x)$ è
+    grande allora $\dot{x}$ sarà piccolo, se $V(x)$ è piccolo 
+    $\dot{x}$ è grande. La forma di $\dot{x}$ è la stessa di $V(x)$
+    ribaltato e "stondato" dall'applicazione di $\sqrt{\cdot}$.
+    Se uno prova a rappresentare $V(x)$ ribaltandolo vede emergere
+    la parte superiore della circonferenza del ritratto di fase. Poichè
+    $\dot{x}$ ha due rami ($\pm\sqrt{\dots}$), occorre ribaltare anche
+    sotto, completando il grafico.\\
 
+    Immaginiamo che $V(x)$
+    sia una guida in un piano verticale su cui viene posta una 
+    pallina. La pallina oscillerà attorno al centro $x=0$ 
+    indipendentemente dall'altezza iniziale e dalla velocità.
+    Supponiamo che parta con velocità $\dot{x}$ positiva e posizione 
+    $x$ negativa. Quando la lasciamo andare la velocità aumenta 
+    fino a $x=0$, poi diminuisce progressivamente man mano che la 
+    pallina sale nel ramo destro della parabola fino a fermarsi. 
+    Dopodiché la velocità diventa negativa e la guida viene 
+    percorsa al contrario. 
+    Il moto si ripete uguale a se stesso 
+    infinite volte, per cui otteniamo il grafico di fase 
+    mostrato sopra. Le frecce blu in figura rappresentano 
+    il senso di percorrenza della curva: per posizioni positive
+    e velocità negative la pallina aumenta il modulo della 
+    velocità e si sposta verso posizioni negative, per cui 
+    l'orbita è percorsa in senso orario, come indicato dalle 
+    frecce. 
+    Se l'energia della pallina è $E=0$ vediamo che è 
+    bloccata nel punto $x=0$. Il punto $(x,\dot{x})=(0,0)$ è 
+    quindi una soluzione di equilibrio stabile.
+    Per $E<0$ il moto non può avvenire. 
+    Possiamo trovare il periodo dei moti periodici tramite il
+    teorema discusso sopra, come viene svolto nel seguente esempio:
     \begin{example}
         \textbf{Moto periodico isocrono: oscillatore armonico}\\
-         Le intersezioni tra $V$ e $H$ sono $x_-$ e $x_+$ sono tali che $x_- = -x_+$. Esse devono soddisfare
+         Le intersezioni tra $V$ e $H$, che chiamiamo $x_-$ e $x_+$ sono tali che $x_- = -x_+$. Esse devono soddisfare
         \begin{equation}
             H = kx^2/2 \implies \bar{x}= \pm \sqrt{2H/k}.
         \end{equation}
@@ -185,33 +275,40 @@
         \end{equation*}
         ora sostituiamo $y^2 = \frac{k}{2H}x^2$ e otteniamo, osservando che $y(\bar{x})=\pm 1$
         \begin{equation*}
-            T = 2 \sqrt{\frac{2H}{k}\frac{m}{2H}}\int_1^1\frac{\mathrm{d}x}{\sqrt{1-y^2}} = 2\pi\sqrt{\frac{m}{k}}.
+            T = 2 \sqrt{\frac{2H}{k}\frac{m}{2H}}\int_{-1}^1\frac{\mathrm{d}x}{\sqrt{1-y^2}} = 2\pi\sqrt{\frac{m}{k}}.
         \end{equation*}
         Quando il periodo di oscillazione non dipende dall'energia $H$ del sistema, allora diciamo che le oscillazioni sono \emph{isocrone}. Al contrario, quando dipendono da $H$, le oscillazioni sono \emph{anisocrone}. Vediamo quindi che l'oscillatore armonico è un sistema periodico isocrono.
     \end{example}
+
+    \newpage
     Un caso più complicato è quello del pendolo $V=-k\cos\theta$:
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\linewidth]{img/pendolo.png}
+        \includegraphics[width=0.5\linewidth]{img/pendolo.png}
         \caption{Potenziale del pendolo semplice}
     \end{figure}
     Per energie minori di $0$ il moto non può avvenire. Per $E=0$ si ha una soluzione di equilibrio stabile, corrispondente alla configurazione in cui il pendolo è fermo e rivolto verso il basso. Per $0<E<1$ i moti sono periodici e il ritratto di fase si compone di orbite ellittiche concentriche simili a quelle dell'oscillatore armonico. Per $E=1$ si hanno due soluzioni di equilibrio instabile in $\pi$ e $-\pi$ che, in realtà, corrispondono fisicamente allo stesso stato, ovvero quello in cui il pendolo è rivolto perfettamente verso l'alto. Sempre per $E=1$ sono possibili dei moti asintotici che tendono al punto di equilibrio instabile, qualora il dato iniziale non sia in $(\theta,\,\dot{\theta})=(n\pi,0),\,n\in \mathbb{Z}$. Per $E>1$ la "pallina" supera i massimi che si verificano in $n\pi$, tracciando delle orbite "aperte" nello spazio delle fasi che corrispondono alle rotazioni del pendolo.
     Il grafico di fase completo è 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\linewidth]{img/phase_space.png}
-        \caption{Spazio delle fasi del pendolo semplice, simulazione realizzata con il metodo di Runge-Kutta II.}
+        \includegraphics[width=0.6\linewidth]{img/phase_space.png}
+        \caption{Spazio delle fasi del 
+        pendolo semplice, simulazione 
+        realizzata con il metodo di 
+        Runge-Kutta II.}
         \label{fig:placeholder}
     \end{figure}
-
-    Se introducessimo l'attrito le orbite di fase verrebbero perturbate. Intuitivamente  dovremmo vedere che le orbite convergono verso il punto di equilibrio stabile $\theta=0$. Una simulazione restituisce infatti:
+    Se introducessimo l'attrito le orbite di fase 
+    verrebbero perturbate. Intuitivamente 
+    dovremmo vedere che le orbite convergono 
+    verso il punto di equilibrio stabile $\theta=0$. 
+    Una simulazione restituisce infatti:
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\linewidth]{img/phase_space_smorzato.png}
+        \includegraphics[width=0.6\linewidth]{img/phase_space_smorzato.png}
         \caption{Spazio delle fasi di un pendolo smorzato. Simulazione realizzata con il metodo di Runge-Kutta II.}
         \label{fig:placeholder}
     \end{figure}
-    
     \begin{theorem}
         \textbf{piccole oscillazioni in una dimensione}\\
         Consideriamo un sistema meccanico determinato dalla coordinata $x$, soggetto a forze conservative di potenziale $V(x)$. Se $V(x)$ ha un minimo in 0, con $V''>0$, allora
